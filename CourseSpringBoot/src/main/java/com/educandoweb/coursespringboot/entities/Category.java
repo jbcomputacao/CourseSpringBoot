@@ -1,69 +1,48 @@
-	/**
-	 * 
-	 */
-
 package com.educandoweb.coursespringboot.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_order")
-public class Order implements Serializable {
-
+@Table(name = "tb_category")
+public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Instant moment;
-	
-	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private User client;
-	
-    public Order() {
-    	
-    }
+	private String name;
 
-	public Order(Long id, Instant monment, User client) {
+	public Category() {
+
+	}
+
+	public Category(Long id, String name) {
 		super();
 		this.id = id;
-		this.moment = monment;
-		this.client = client;
+		this.name = name;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public Instant getMonment() {
-		return moment;
+	public String getName() {
+		return name;
 	}
 
-	public void setMonment(Instant monment) {
-		this.moment = monment;
-	}
-
-	public User getClient() {
-		return client;
-	}
-
-	public void setClient(User client) {
-		this.client = client;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -79,8 +58,8 @@ public class Order implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Order other = (Order) obj;
-		return Objects.equals(id, other.id);
+		Category other = (Category) obj;
+		return id == other.id;
 	}
-    
+
 }
